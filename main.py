@@ -6,8 +6,8 @@ from pico_config import PinConfig
 async def main():
     pc = PinConfig()
 
-    thunder = Thunder(pc.thunder_en_l, pc.thunder_en_r, pc.thunder_pwm_l, pc.thunder_pwm_r, pc.thunder_btn)
-    blink = Blink(pc.status_led)
+    thunder = Thunder()
+    blink = Blink()
     
     # Tasks starten (laufen parallel)
     asyncio.create_task(blink.run())
@@ -19,4 +19,4 @@ async def main():
 try:
     asyncio.run(main())
 except KeyboardInterrupt:
-    pass
+    PinConfig.status_led.off()

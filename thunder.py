@@ -2,19 +2,12 @@ import asyncio
 from pico_config import PinConfig
 
 class Thunder(PinConfig):
-    def __init__(self, thunder_en_l, thunder_en_r, thunder_pwm_l, thunder_pwm_r, thunder_btn):
-        self.thunder_en_l = thunder_en_l
-        self.thunder_en_r = thunder_en_r
-        self.thunder_pwm_l = thunder_pwm_l
-        self.thunder_pwm_r = thunder_pwm_r
-        self.btn = thunder_btn
-
-
+    def __init__(self):
         # Event für manuellen Trigger
         self.manual_trigger = asyncio.Event()
         
         # Den Button verknüpfen
-        self.btn.on_click(self.trigger_once)
+        self.thunder_btn.on_click(self.trigger_once)
     
     async def trigger_once(self):
         print("Klick! Blitz ausgelöst.")

@@ -8,7 +8,7 @@ print("pico_w is booting")
 class PinConfig:
 
     
-    status_led = PWM(Pin(25)) # GPIO25: led
+    status_led = Pin("LED", Pin.OUT) # GPIO25: led
 
     thunder_en_l = Pin(2, Pin.OUT)
     thunder_en_r = Pin(3, Pin.OUT)
