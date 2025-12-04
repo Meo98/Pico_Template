@@ -7,7 +7,7 @@ async def main():
     pc = PinConfig()
 
     thunder = Thunder()
-    blink = Blink()
+    blink = Blink(mode = 'digital')  # 'digital' oder 'pwm' pin.config anpassen!
     
     # Tasks starten (laufen parallel)
     asyncio.create_task(blink.run())

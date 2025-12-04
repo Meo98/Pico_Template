@@ -9,6 +9,7 @@ class PinConfig:
 
     
     status_led = Pin("LED", Pin.OUT) # GPIO25: led
+    #status_led = PWM(Pin(25)) # GPIO25: LED als PWM
 
     thunder_en_l = Pin(2, Pin.OUT)
     thunder_en_r = Pin(3, Pin.OUT)
