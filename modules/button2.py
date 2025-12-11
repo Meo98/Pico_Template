@@ -39,12 +39,11 @@ class Button:
         return val == 0 if self.active_low else val == 1
 
     async def _trigger(self, callback):
-        if callback:
-            print(f"Button Event: {callback.__name__}")
-            if asyncio.iscoroutinefunction(callback):
-                await callback()
-            else:
-                callback()
+            if callback:
+                print(f"Button Event: {callback.__name__}")
+                res = callback()
+                if hasattr(res, "send"): # Check if generator/coroutine in MicroPython
+                    await res
 
     async def run(self):
         click_count = 0
