@@ -2,8 +2,8 @@
 
 A project template for Raspberry Pi Pico / Pico W with MicroPython firmware and KiCad PCB design.
 
-> **GitHub Template:** Click "Use this template" to create a new repo from this structure.
-> Then rename the `hardware/Template.*` files to match your project name.
+> **Recommended:** Use `new_project.sh` (see below) instead of "Use this template" —
+> it creates the repo, sets all secrets, and clones it in one command.
 
 ---
 
@@ -38,6 +38,25 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full code patterns, rules, and ho
 
 ## Quick Start
 
+### New project (one command)
+
+**One-time setup** — add your Notion token to `~/.zshrc`:
+```bash
+export NOTION_TOKEN="ntn_..."
+```
+
+**Every new project:**
+```bash
+git clone https://github.com/Meo98/Pico_Template.git
+cd Pico_Template
+./new_project.sh MyProjectName
+cd MyProjectName
+```
+
+This creates the GitHub repo, sets the `NOTION_TOKEN` secret automatically, and clones the project locally. Then rename `hardware/Template.*` to `hardware/MyProjectName.*`.
+
+---
+
 ### Firmware
 
 1. Flash [MicroPython](https://micropython.org/download/RPI_PICO2_W/) onto the Pico
@@ -56,14 +75,13 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full code patterns, rules, and ho
 ### Notion BOM Sync
 
 Automatically syncs all schematic components (`in_bom = yes`) to your Notion
-**Bauteil-Bibliothek** on every push.
+**Bauteil-Bibliothek** on every push when `hardware/*.kicad_sch` changes.
 
-Add these secrets to your GitHub repo (`Settings → Secrets → Actions`):
-
-| Secret | Value |
-|---|---|
-| `NOTION_TOKEN` | Your Notion internal integration token |
-| `NOTION_DB_ID` | Notion database ID (optional – default already configured) |
+If you used `new_project.sh`, the `NOTION_TOKEN` secret is already set.
+If you created the repo manually via "Use this template", set it once:
+```bash
+gh secret set NOTION_TOKEN --repo Meo98/YourProjectName
+```
 
 ---
 
