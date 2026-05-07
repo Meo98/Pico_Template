@@ -38,11 +38,12 @@ BAUTEIL_DB     = os.environ.get("NOTION_DB_ID",          "359d2e49b98481cab9d9db
 NOTION_VER     = "2022-06-28"
 
 TYPE_MAP = {
-    "Device:R": "Widerstand", "Device:C": "Kondensator", "Device:L": "Induktivität",
-    "Device:D": "Diode",      "Device:LED": "LED",        "Transistor": "Transistor",
-    "Pico": "Mikrocontroller","DRV": "IC / Treiber",      "PC817": "Optokoppler",
-    "L7805": "Spannungsregler","IRF": "MOSFET",           "BTS": "High-Side Switch",
-    "TB6612": "Motortreiber", "1.5KE": "TVS-Diode",       "1190": "Steckverbinder",
+    "Device:R": "Widerstand",       "Device:C": "Kondensator",  "Device:L": "Induktivität",
+    "Device:D": "Diode",            "Device:LED": "LED",
+    "Transistor_FET": "MOSFET",     "Transistor_BJT": "Transistor",  "Transistor": "Transistor",
+    "Pico": "Mikrocontroller",      "DRV": "IC / Treiber",      "PC817": "Optokoppler",
+    "L7805": "Spannungsregler",     "IRF": "MOSFET",            "BTS": "High-Side Switch",
+    "TB6612": "Motortreiber",       "1.5KE": "TVS-Diode",       "1190": "Steckverbinder",
 }
 
 # ── API ───────────────────────────────────────────────────────────────────────
