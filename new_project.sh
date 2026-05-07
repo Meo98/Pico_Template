@@ -36,6 +36,34 @@ else
   echo "  Secret set."
 fi
 
+echo "Creating Notion project entry..."
+if [[ -n "${NOTION_TOKEN:-}" ]]; then
+  GITHUB_URL="https://github.com/$REPO"
+  PROJEKTE_DB="359d2e49b98481fb83c2e2e3f1a9edbb"
+  DISPLAY_NAME="${PROJECT_NAME//_/ }"
+
+  RESPONSE=$(curl -s -X POST "https://api.notion.com/v1/pages" \
+    -H "Authorization: Bearer $NOTION_TOKEN" \
+    -H "Content-Type: application/json" \
+    -H "Notion-Version: 2022-06-28" \
+    -d "{
+      \"parent\": {\"database_id\": \"$PROJEKTE_DB\"},
+      \"properties\": {
+        \"Name\": {\"title\": [{\"text\": {\"content\": \"$DISPLAY_NAME\"}}]},
+        \"Status\": {\"select\": {\"name\": \"In Arbeit\"}},
+        \"GitHub URL\": {\"url\": \"$GITHUB_URL\"}
+      }
+    }")
+
+  if echo "$RESPONSE" | grep -q '"object":"page"'; then
+    echo "  Notion project page created."
+  else
+    echo "  Notion: $(echo "$RESPONSE" | grep -o '"message":"[^"]*"' | head -1)"
+  fi
+else
+  echo "  Skipped (NOTION_TOKEN not set)."
+fi
+
 echo ""
 echo "Done! Project created at: https://github.com/$REPO"
 echo ""
